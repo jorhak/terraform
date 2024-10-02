@@ -19,5 +19,5 @@ variable "username" {
 variable "hostname" {
   type        = string
   description = "Nombre que va tener nuestro host"
-  default     = "DDEApp"
+  default     = "DDEAppDev"
 }
