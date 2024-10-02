@@ -1,24 +1,28 @@
+---
+# Playbook para el grupo application
 - name: Install Docker using script.sh for application
   hosts: application
   become: true
   tasks:
-    - name: Copy script.sh to target hosts
+    - name: Copy script.sh to target hosts (application)
       copy:
         src: ../../script.sh
         dest: /tmp/script.sh
         mode: '0755'
 
-    - name: Run the Docker installation script
+    - name: Run the Docker installation script (application)
       command: /tmp/script.sh
+
+# Playbook para el grupo jenkins
 - name: Install Docker using script.sh for jenkins
   hosts: jenkins
   become: true
   tasks:
-    - name: Copy script.sh to target hosts
+    - name: Copy script.sh to target hosts (jenkins)
       copy:
         src: ../../script.sh
         dest: /tmp/script.sh
         mode: '0755'
 
-    - name: Run the Docker installation script
+    - name: Run the Docker installation script (jenkins)
       command: /tmp/script.sh
