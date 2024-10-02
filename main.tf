@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # Create virtual network
-resource "azurerm_virtual_network" "my_terraform_network" {
+resource "azurerm_virtual_network" "my_terraform_networkJenkins" {
   name                = "myVnetJenkins"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "my_terraform_network" {
 }
 
 # Create subnet
-resource "azurerm_subnet" "my_terraform_subnet" {
+resource "azurerm_subnet" "my_terraform_subnetJenkins" {
   name                 = "mySubnetJenkins"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.my_terraform_network.name
@@ -24,7 +24,7 @@ resource "azurerm_subnet" "my_terraform_subnet" {
 }
 
 # Create public IPs
-resource "azurerm_public_ip" "my_terraform_public_ip" {
+resource "azurerm_public_ip" "my_terraform_public_ipJenkins" {
   name                = "myPublicIPJenkins"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -32,7 +32,7 @@ resource "azurerm_public_ip" "my_terraform_public_ip" {
 }
 
 # Create Network Security Group and rule
-resource "azurerm_network_security_group" "my_terraform_nsg" {
+resource "azurerm_network_security_group" "my_terraform_nsgJenkins" {
   name                = "myNetworkSecurityGroupJenkins"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -73,7 +73,7 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
 }
 
 # Create network interface
-resource "azurerm_network_interface" "my_terraform_nic" {
+resource "azurerm_network_interface" "my_terraform_nicJenkins" {
   name                = "myNICJenkins"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -103,7 +103,7 @@ resource "random_id" "random_id" {
 }
 
 # Create storage account for boot diagnostics
-resource "azurerm_storage_account" "my_storage_account" {
+resource "azurerm_storage_account" "my_storage_accountJenkins" {
   name                     = "diag${random_id.random_id.hex}"
   location                 = azurerm_resource_group.rg.location
   resource_group_name      = azurerm_resource_group.rg.name
@@ -112,7 +112,7 @@ resource "azurerm_storage_account" "my_storage_account" {
 }
 
 # Create virtual machine
-resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
+resource "azurerm_linux_virtual_machine" "my_terraform_vmJenkins" {
   name                  = "myVMJenkins"
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
