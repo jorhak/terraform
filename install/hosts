@@ -3,4 +3,5 @@
 192.168.1.10 ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_rsa_app2
 192.168.1.10 ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_rsa_app3
 [jenkins]
-40.75.107.83 ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_jenkins 
+40.75.107.83 ansible_user=jenkins ansible_ssh_private_key_file=~/.ssh/id_jenkins 
+
