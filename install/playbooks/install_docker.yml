@@ -1,0 +1,24 @@
+- name: Install Docker using script.sh for application
+  hosts: application
+  become: true
+  tasks:
+    - name: Copy script.sh to target hosts
+      copy:
+        src: ../../script.sh
+        dest: /tmp/script.sh
+        mode: '0755'
+
+    - name: Run the Docker installation script
+      command: /tmp/script.sh
+- name: Install Docker using script.sh for jenkins
+  hosts: jenkins
+  become: true
+  tasks:
+    - name: Copy script.sh to target hosts
+      copy:
+        src: ../../script.sh
+        dest: /tmp/script.sh
+        mode: '0755'
+
+    - name: Run the Docker installation script
+      command: /tmp/script.sh
