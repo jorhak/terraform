@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # Create virtual network
-resource "azurerm_virtual_network" "my_terraform_networkQA" {
+resource "azurerm_virtual_network" "my_terraform_network" {
   name                = "myVnetQA"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "my_terraform_networkQA" {
 }
 
 # Create subnet
-resource "azurerm_subnet" "my_terraform_subnetQA" {
+resource "azurerm_subnet" "my_terraform_subnet" {
   name                 = "mySubnetQA"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.my_terraform_network.name
@@ -24,7 +24,7 @@ resource "azurerm_subnet" "my_terraform_subnetQA" {
 }
 
 # Create public IPs
-resource "azurerm_public_ip" "my_terraform_public_ipQA" {
+resource "azurerm_public_ip" "my_terraform_public_ip" {
   name                = "myPublicIPQA"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -32,7 +32,7 @@ resource "azurerm_public_ip" "my_terraform_public_ipQA" {
 }
 
 # Create Network Security Group and rule
-resource "azurerm_network_security_group" "my_terraform_nsgQA" {
+resource "azurerm_network_security_group" "my_terraform_nsg" {
   name                = "myNetworkSecurityGroupQA"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -73,7 +73,7 @@ resource "azurerm_network_security_group" "my_terraform_nsgQA" {
 }
 
 # Create network interface
-resource "azurerm_network_interface" "my_terraform_nicQA" {
+resource "azurerm_network_interface" "my_terraform_nic" {
   name                = "myNICQA"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -103,7 +103,7 @@ resource "random_id" "random_id" {
 }
 
 # Create storage account for boot diagnostics
-resource "azurerm_storage_account" "my_storage_accountQA" {
+resource "azurerm_storage_account" "my_storage_account" {
   name                     = "diag${random_id.random_id.hex}"
   location                 = azurerm_resource_group.rg.location
   resource_group_name      = azurerm_resource_group.rg.name
@@ -112,7 +112,7 @@ resource "azurerm_storage_account" "my_storage_accountQA" {
 }
 
 # Create virtual machine
-resource "azurerm_linux_virtual_machine" "my_terraform_vmQA" {
+resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
   name                  = "myQA"
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
