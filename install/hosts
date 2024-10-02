@@ -1,7 +1,7 @@
 [application]
-192.168.1.10 ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_rsa_app1
-192.168.1.10 ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_rsa_app2
-192.168.1.10 ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_rsa_app3
+ ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_app1
+ ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_app2
+ ansible_user=app ansible_ssh_private_key_file=~/.ssh/id_app3
 [jenkins]
-40.75.107.83 ansible_user=jenkins ansible_ssh_private_key_file=~/.ssh/id_jenkins 
+ ansible_user=jenkins ansible_ssh_private_key_file=~/.ssh/id_jenkins 
 
