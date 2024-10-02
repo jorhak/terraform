@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # Create virtual network
-resource "azurerm_virtual_network" "my_terraform_network_dev" {
+resource "azurerm_virtual_network" "my_terraform_network" {
   name                = "myVnetDev"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
@@ -16,15 +16,15 @@ resource "azurerm_virtual_network" "my_terraform_network_dev" {
 }
 
 # Create subnet
-resource "azurerm_subnet" "my_terraform_subnetDev" {
+resource "azurerm_subnet" "my_terraform_subnet" {
   name                 = "mySubnetDev"
   resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.my_terraform_network_dev.name
+  virtual_network_name = azurerm_virtual_network.my_terraform_network.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
 # Create public IPs
-resource "azurerm_public_ip" "my_terraform_public_ip_dev" {
+resource "azurerm_public_ip" "my_terraform_public_ip" {
   name                = "myPublicIPDev"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -73,23 +73,23 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
 }
 
 # Create network interface
-resource "azurerm_network_interface" "my_terraform_nic_dev" {
+resource "azurerm_network_interface" "my_terraform_nic" {
   name                = "myNICDev"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "my_nic_configurationDev"
-    subnet_id                     = azurerm_subnet.my_terraform_subnet_dev.id
+    subnet_id                     = azurerm_subnet.my_terraform_subnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.my_terraform_public_ip_dev.id
+    public_ip_address_id          = azurerm_public_ip.my_terraform_public_ip.id
   }
 }
 
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "example" {
-  network_interface_id      = azurerm_network_interface.my_terraform_nic_dev.id
-  network_security_group_id = azurerm_network_security_group.my_terraform_nsg_dev.id
+  network_interface_id      = azurerm_network_interface.my_terraform_nic.id
+  network_security_group_id = azurerm_network_security_group.my_terraform_nsg.id
 }
 
 # Generate random text for a unique storage account name
@@ -103,7 +103,7 @@ resource "random_id" "random_id" {
 }
 
 # Create storage account for boot diagnostics
-resource "azurerm_storage_account" "my_storage_account_dev" {
+resource "azurerm_storage_account" "my_storage_account" {
   name                     = "diag${random_id.random_id.hex}"
   location                 = azurerm_resource_group.rg.location
   resource_group_name      = azurerm_resource_group.rg.name
@@ -112,7 +112,7 @@ resource "azurerm_storage_account" "my_storage_account_dev" {
 }
 
 # Create virtual machine
-resource "azurerm_linux_virtual_machine" "my_terraform_vm_dev" {
+resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
   name                  = "myDev"
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
